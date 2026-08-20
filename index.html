@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matt's Plumbing Services | Tampa Bay's Trusted Plumbers Since 2015</title>
+<meta name="description" content="Family-owned Tampa plumbers offering 24/7 emergency service, drain cleaning, water heaters, repiping, sewer lines & more. Same-day service, satisfaction guaranteed. Call 813-269-7370.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0E2A3F;
+    --navy-deep:#081b29;
+    --steel:#1C4F6B;
+    --copper:#D9711F;
+    --copper-light:#F0954A;
+    --paper:#F6F2EA;
+    --paper-dim:#EFE9DD;
+    --ink:#12202A;
+    --ink-soft:#4B5B63;
+    --teal:#3E8E7E;
+    --line:rgba(14,42,63,0.12);
+    --white:#FFFFFF;
+    --radius:14px;
+    --shadow-sm:0 2px 10px rgba(14,42,63,0.08);
+    --shadow-md:0 12px 30px rgba(14,42,63,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:800;
+    letter-spacing:0.01em;
+    line-height:1.05;
+    margin:0;
+    color:var(--navy);
+  }
+  p{margin:0;}
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--copper);
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px;height:1.5px;background:var(--copper);display:inline-block;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    padding:14px 26px;border-radius:9px;font-weight:700;font-size:15.5px;
+    font-family:'Inter',sans-serif;
+    border:1.5px solid transparent;
+    cursor:pointer;transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    white-space:nowrap;
+  }
+  .btn-copper{background:var(--copper);color:var(--white);box-shadow:0 6px 18px rgba(217,113,31,0.35);}
+  .btn-copper:hover{background:var(--copper-light);transform:translateY(-1px);}
+  .btn-outline{background:transparent;border-color:rgba(255,255,255,0.4);color:var(--white);}
+  .btn-outline:hover{background:rgba(255,255,255,0.1);}
+  .btn-navy-outline{background:transparent;border-color:var(--navy);color:var(--navy);}
+  .btn-navy-outline:hover{background:var(--navy);color:var(--white);}
+  .btn-sm{padding:9px 16px;font-size:13.5px;border-radius:7px;}
+
+  /* ---------- Header ---------- */
+  .topbar{
+    background:var(--navy-deep);color:rgba(255,255,255,.8);font-size:13px;
+    padding:7px 0;
+  }
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
+  .topbar strong{color:var(--copper-light);}
+  header.main-nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:20px;}
+  .logo{display:flex;align-items:center;gap:10px;}
+  .logo-mark{width:42px;height:42px;flex:none;}
+  .logo-text{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:21px;color:var(--navy);line-height:1.05;}
+  .logo-text span{display:block;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:10.5px;letter-spacing:.14em;color:var(--copper);text-transform:uppercase;margin-top:2px;}
+  nav.links{display:flex;gap:26px;align-items:center;}
+  nav.links a{font-size:14.5px;font-weight:600;color:var(--ink-soft);transition:color .15s;}
+  nav.links a:hover{color:var(--copper);}
+  .nav-cta{display:flex;align-items:center;gap:14px;}
+  .phone-cta{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--navy);font-size:15px;}
+  .phone-cta svg{color:var(--copper);}
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:var(--navy);
+    color:var(--white);
+    overflow:hidden;
+    padding:78px 0 60px;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+    background-size:34px 34px;
+    mask-image:radial-gradient(ellipse 90% 80% at 30% 30%, black 40%, transparent 90%);
+  }
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;}
+  .hero h1{color:var(--white);font-size:56px;margin:14px 0 18px;}
+  .hero h1 em{font-style:normal;color:var(--copper-light);}
+  .hero p.lead{font-size:18px;color:rgba(255,255,255,0.78);max-width:520px;line-height:1.55;}
+  .hero-ctas{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;}
+  .trust-chips{display:flex;gap:22px;margin-top:38px;flex-wrap:wrap;}
+  .trust-chips .chip{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,0.75);font-weight:600;}
+  .trust-chips svg{color:var(--copper-light);flex:none;}
+
+  /* hero schematic art */
+  .schematic{position:relative;}
+  .schematic svg{width:100%;height:auto;overflow:visible;}
+  .schem-node{fill:var(--navy-deep);stroke:var(--copper-light);stroke-width:1.4;}
+  .schem-line{fill:none;stroke:rgba(255,255,255,0.28);stroke-width:2;stroke-dasharray:4 6;}
+  .schem-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;fill:rgba(255,255,255,0.55);letter-spacing:.05em;}
+  .drop{fill:var(--copper-light);}
+
+  /* ---------- Stats bar ---------- */
+  .stats{background:var(--copper);color:var(--white);}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);padding:30px 24px;}
+  .stat{text-align:center;border-right:1px solid rgba(255,255,255,.25);padding:0 10px;}
+  .stat:last-child{border-right:none;}
+  .stat .num{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:30px;display:block;}
+  .stat .label{font-size:12.5px;font-weight:600;letter-spacing:.03em;color:rgba(255,255,255,.9);margin-top:2px;}
+
+  /* ---------- Section generic ---------- */
+  section{padding:88px 0;}
+  .section-head{max-width:640px;margin-bottom:48px;}
+  .section-head h2{font-size:40px;margin-top:10px;}
+  .section-head p{color:var(--ink-soft);font-size:16px;margin-top:14px;line-height:1.6;}
+  .center{margin-left:auto;margin-right:auto;text-align:center;}
+
+  /* ---------- Services grid ---------- */
+  .services-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  }
+  .service-card{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 24px;transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    position:relative;
+  }
+  .service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:transparent;}
+  .service-icon{
+    width:46px;height:46px;border-radius:10px;background:var(--paper-dim);
+    display:flex;align-items:center;justify-content:center;color:var(--copper);margin-bottom:16px;
+  }
+  .service-card h3{font-size:21px;color:var(--navy);margin-bottom:6px;}
+  .service-card p{font-size:14px;color:var(--ink-soft);line-height:1.5;}
+  .service-card.emergency{background:var(--navy);border-color:var(--navy);}
+  .service-card.emergency .service-icon{background:rgba(255,255,255,0.1);color:var(--copper-light);}
+  .service-card.emergency h3, .service-card.emergency p{color:var(--white);}
+  .service-card.emergency p{color:rgba(255,255,255,.72);}
+
+  /* ---------- Why us ---------- */
+  .why{background:var(--white);}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .why-list{display:flex;flex-direction:column;gap:26px;}
+  .why-item{display:flex;gap:18px;}
+  .why-num{
+    font-family:'JetBrains Mono',monospace;color:var(--copper);font-weight:700;font-size:14px;
+    width:34px;height:34px;border:1.5px solid var(--copper);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .why-item h4{font-size:20px;color:var(--navy);margin-bottom:5px;}
+  .why-item p{color:var(--ink-soft);font-size:14.5px;line-height:1.55;}
+
+  .why-art{background:var(--paper-dim);border-radius:20px;padding:36px;position:relative;overflow:hidden;}
+  .why-art svg{width:100%;height:auto;}
+
+  /* ---------- Emergency banner ---------- */
+  .emergency-banner{
+    background:var(--navy-deep);color:var(--white);position:relative;overflow:hidden;padding:64px 0;
+  }
+  .emergency-banner::after{
+    content:"";position:absolute;right:-60px;top:-60px;width:280px;height:280px;border-radius:50%;
+    background:radial-gradient(circle, rgba(217,113,31,0.25), transparent 70%);
+  }
+  .eb-inner{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;position:relative;}
+  .eb-inner h2{color:var(--white);font-size:34px;max-width:480px;}
+  .eb-inner p{color:rgba(255,255,255,.72);margin-top:10px;font-size:15.5px;max-width:440px;}
+
+  /* ---------- Service area ---------- */
+  .area{background:var(--paper);}
+  .area-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center;}
+  .county-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+  .county-chips span{
+    background:var(--white);border:1px solid var(--line);padding:8px 16px;border-radius:999px;
+    font-size:13.5px;font-weight:600;color:var(--steel);
+  }
+  .map-art{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:20px;}
+
+  /* ---------- Testimonials ---------- */
+  .testimonials{background:var(--navy);color:var(--white);}
+  .testimonials .section-head h2{color:var(--white);}
+  .testimonials .section-head p{color:rgba(255,255,255,.65);}
+  .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .t-card{
+    background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);
+    padding:26px;
+  }
+  .stars{color:var(--copper-light);font-size:15px;letter-spacing:2px;margin-bottom:14px;}
+  .t-card p.quote{font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.85);}
+  .t-card .who{margin-top:16px;font-size:13px;font-weight:700;color:var(--copper-light);font-family:'JetBrains Mono',monospace;}
+  .badges-row{display:flex;gap:34px;flex-wrap:wrap;justify-content:center;margin-top:56px;opacity:.85;}
+  .badge-pill{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:rgba(255,255,255,.75);}
+  .badge-pill svg{color:var(--copper-light);}
+
+  /* ---------- CTA / contact ---------- */
+  .contact{background:var(--copper);color:var(--white);text-align:center;}
+  .contact .wrap{max-width:720px;}
+  .contact h2{color:var(--white);font-size:42px;}
+  .contact p{color:rgba(255,255,255,.88);margin-top:14px;font-size:16.5px;}
+  .contact .big-phone{
+    font-family:'JetBrains Mono',monospace;font-size:44px;font-weight:700;color:var(--white);
+    margin:26px 0 8px;display:inline-block;
+  }
+  .contact .hours{font-size:13.5px;color:rgba(255,255,255,.85);font-weight:600;letter-spacing:.03em;}
+  .contact .contact-ctas{display:flex;gap:14px;justify-content:center;margin-top:26px;flex-wrap:wrap;}
+  .contact .btn-copper{background:var(--navy);box-shadow:none;}
+  .contact .btn-copper:hover{background:var(--navy-deep);}
+  .contact .btn-outline{border-color:rgba(255,255,255,.55);}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--navy-deep);color:rgba(255,255,255,.65);padding:56px 0 24px;font-size:14px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.08);}
+  .footer-grid h5{color:var(--white);font-family:'Inter',sans-serif;font-size:14px;font-weight:700;margin-bottom:16px;letter-spacing:.03em;}
+  .footer-grid a{display:block;color:rgba(255,255,255,.6);margin-bottom:10px;transition:color .15s;font-size:13.8px;}
+  .footer-grid a:hover{color:var(--copper-light);}
+  .footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .footer-logo .logo-text{color:var(--white);}
+  .footer-grid p{color:rgba(255,255,255,.55);font-size:13.5px;line-height:1.6;margin-top:12px;}
+  .social-row{display:flex;gap:10px;margin-top:16px;}
+  .social-row a{
+    width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.06);
+    display:flex;align-items:center;justify-content:center;margin:0;
+  }
+  .social-row a:hover{background:var(--copper);color:var(--white);}
+  .bottom-bar{display:flex;justify-content:space-between;align-items:center;padding-top:22px;font-size:12.5px;color:rgba(255,255,255,.4);flex-wrap:wrap;gap:10px;}
+  .bottom-bar a{color:rgba(255,255,255,.5);}
+  .bottom-bar a:hover{color:var(--copper-light);}
+
+  /* sticky mobile call bar */
+  .sticky-call{
+    position:fixed;bottom:0;left:0;right:0;z-index:60;
+    background:var(--navy);display:none;padding:12px 18px;
+    box-shadow:0 -6px 20px rgba(0,0,0,.25);
+  }
+  .sticky-call a{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    background:var(--copper);color:var(--white);font-weight:700;padding:13px;border-radius:9px;font-size:15.5px;
+  }
+
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:42px;}
+    .schematic{max-width:420px;margin:0 auto;}
+    .services-grid{grid-template-columns:repeat(2,1fr);}
+    .why-grid, .area-grid{grid-template-columns:1fr;}
+    .why-art{order:-1;}
+    .t-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    nav.links{display:none;}
+    .stats .wrap{grid-template-columns:repeat(2,1fr);row-gap:22px;}
+    .stat:nth-child(2){border-right:none;}
+  }
+  @media (max-width:640px){
+    section{padding:60px 0;}
+    .hero{padding:52px 0 46px;}
+    .hero h1{font-size:34px;}
+    .section-head h2{font-size:30px;}
+    .services-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .eb-inner{flex-direction:column;text-align:center;}
+    .eb-inner p{margin-left:auto;margin-right:auto;}
+    .contact .big-phone{font-size:32px;}
+    .sticky-call{display:block;}
+    body{padding-bottom:70px;}
+    .phone-cta span{display:none;}
+    .topbar .wrap{justify-content:center;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<div class="topbar">
+  <div class="wrap">
+    <div>Serving <strong>Tampa, FL</strong> &amp; the Greater Tampa Bay Area since 2015</div>
+    <div><strong>Open 24/7</strong> &nbsp;·&nbsp; Same-Day Emergency Service Available</div>
+  </div>
+</div>
+
+<!-- ================= NAV ================= -->
+<header class="main-nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo">
+      <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="23" fill="#0E2A3F" stroke="#D9711F" stroke-width="1.6"/>
+        <path d="M15 27c0-5 4-8 9-13 5 5 9 8 9 13a9 9 0 0 1-18 0Z" fill="#D9711F"/>
+        <path d="M18.5 28.5c0-2.2 1.4-3.8 3.2-5.6" stroke="#0E2A3F" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <div class="logo-text">Matt's Plumbing<span>The Tampa Bay Beard &mdash; Est. 2015</span></div>
+    </a>
+    <nav class="links">
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#emergency">Emergency</a>
+      <a href="#areas">Service Area</a>
+      <a href="#reviews">Reviews</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="phone-cta" href="tel:8132697370">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span>813-269-7370</span>
+      </a>
+      <a class="btn btn-copper btn-sm" href="tel:8132697370">Request Service</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Family-Owned · Tampa Bay Since 2015</div>
+      <h1>Quality plumbing,<br><em>done right</em> the first time.</h1>
+      <p class="lead">From a dripping faucet to a full home repipe, Matt's Plumbing Services keeps Tampa Bay flowing — professional, punctual, and stocked with 1,500+ tools &amp; parts to fix it on the first visit.</p>
+      <div class="hero-ctas">
+        <a href="tel:8132697370" class="btn btn-copper">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call 813-269-7370
+        </a>
+        <a href="#services" class="btn btn-outline">See All Services</a>
+      </div>
+      <div class="trust-chips">
+        <div class="chip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          24/7 Emergency Service
+        </div>
+        <div class="chip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Satisfaction Guaranteed
+        </div>
+        <div class="chip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          1,500+ Tools On Every Truck
+        </div>
+      </div>
+    </div>
+
+    <!-- signature schematic art -->
+    <div class="schematic">
+      <svg viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg">
+        <path id="mainpipe" class="schem-line" d="M40 320 C 100 320, 90 230, 160 220 S 260 150, 240 90 S 320 40, 380 45"/>
+        <path class="schem-line" d="M160 220 C 120 200, 90 150, 110 100"/>
+        <path class="schem-line" d="M240 90 C 200 70, 190 40, 210 15"/>
+
+        <circle class="schem-node" cx="40" cy="320" r="7"/>
+        <circle class="schem-node" cx="160" cy="220" r="7"/>
+        <circle class="schem-node" cx="240" cy="90" r="7"/>
+        <circle class="schem-node" cx="380" cy="45" r="7"/>
+        <circle class="schem-node" cx="110" cy="100" r="6"/>
+        <circle class="schem-node" cx="210" cy="15" r="6"/>
+
+        <text class="schem-label" x="10" y="345">DRAIN LINE</text>
+        <text class="schem-label" x="140" y="248">SLAB</text>
+        <text class="schem-label" x="70" y="90">LEAK PT.</text>
+        <text class="schem-label" x="205" y="118">WATER HTR</text>
+        <text class="schem-label" x="330" y="35">MAIN</text>
+
+        <circle class="drop" r="5">
+          <animateMotion dur="6s" repeatCount="indefinite" path="M40 320 C 100 320, 90 230, 160 220 S 260 150, 240 90 S 320 40, 380 45"/>
+        </circle>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><span class="num">100%</span><span class="label">Commitment to Quality</span></div>
+    <div class="stat"><span class="num">24/7</span><span class="label">Call Us Anytime</span></div>
+    <div class="stat"><span class="num">1,500+</span><span class="label">Tools &amp; Parts Stocked</span></div>
+    <div class="stat"><span class="num">2015</span><span class="label">Serving Tampa Bay Since</span></div>
+  </div>
+</div>
+
+<!-- ================= SERVICES ================= -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center;">What We Fix</div>
+      <h2>Every aspect of your home's plumbing, covered.</h2>
+      <p>One call handles it — routine repairs, full replacements, and true plumbing emergencies, all from a fully-stocked truck.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6M9 5h6"/><path d="M12 8c-4 4-7 7.5-7 11a7 7 0 0 0 14 0c0-3.5-3-7-7-11Z"/></svg>
+        </div>
+        <h3>Drain Cleaning &amp; Clearing</h3>
+        <p>Fast, thorough clearing for slow or blocked drains — kitchen, bath, and main lines.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        </div>
+        <h3>Leak Detection</h3>
+        <p>Pinpoint hidden leaks before they turn into water damage or a spiking water bill.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.5-2-5-1.5 1-2 2-2 2-.5-2.5-2-4.5-3-6-1 1.5-2.5 3.5-3 6 0 0-.5-1-2-2-1 1.5-2 3-2 5a7 7 0 0 0 7 7Z"/></svg>
+        </div>
+        <h3>Water Heaters</h3>
+        <p>Repair, replacement, and maintenance to keep your hot water reliable year-round.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="10" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg>
+        </div>
+        <h3>Tankless Water Heaters</h3>
+        <p>On-demand hot water systems, professionally installed and serviced.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h18M5 14V6a1 1 0 0 1 1-1h3v3M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg>
+        </div>
+        <h3>Tubs &amp; Showers</h3>
+        <p>Repairs, valve replacement, and installs for tubs, showers, and surrounds.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v18M18 3v6a3 3 0 0 1-3 3h-3M6 12h4"/></svg>
+        </div>
+        <h3>Repiping &amp; Pipes</h3>
+        <p>Full or partial repipes to replace aging, corroded, or leak-prone plumbing.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v9a5 5 0 0 0 5 5h11M15 14l4 4-4 4"/></svg>
+        </div>
+        <h3>Sewer Lines</h3>
+        <p>Camera inspection, repair, and replacement to keep wastewater moving safely.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 9v12h16V9l-8-6Z"/><path d="M9 21v-6h6v6"/></svg>
+        </div>
+        <h3>Water Mains</h3>
+        <p>Diagnosis and repair for the line that supplies water to your entire home.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15h18M9 3v18"/></svg>
+        </div>
+        <h3>Slab Leak Detection &amp; Repair</h3>
+        <p>Protect your foundation with early detection and lasting slab leak repairs.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 3 3 5 7 8 4-3 7-5 7-8V6"/></svg>
+        </div>
+        <h3>Toilets</h3>
+        <p>Repairs, running-toilet fixes, and new toilet installation.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h4a4 4 0 0 1 4 4v2M8 4v4M8 4H6M16 10v3a3 3 0 0 1-3 3H9l-3 4"/></svg>
+        </div>
+        <h3>Faucets</h3>
+        <p>Drip-free faucet repair and stylish replacements for kitchen and bath.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="7"/><path d="M9 13a3 3 0 0 1 6 0M9 4h6l1 4H8l1-4Z"/></svg>
+        </div>
+        <h3>Garbage Disposals</h3>
+        <p>Repair, replacement, and installation for jammed or failing disposals.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16l-6 8v6l-4 2v-8L4 4Z"/></svg>
+        </div>
+        <h3>Water Filtration</h3>
+        <p>Whole-home and under-sink filtration systems for cleaner drinking water.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        </div>
+        <h3>Commercial Plumbing</h3>
+        <p>Reliable plumbing service and maintenance for Tampa Bay businesses.</p>
+      </div>
+
+      <div class="service-card emergency">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L14.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+        </div>
+        <h3>24/7 Emergency Plumbing</h3>
+        <p>Burst pipe, no hot water, or backed-up sewer — we answer day or night.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY US ================= -->
+<section class="why" id="why">
+  <div class="wrap why-grid">
+    <div>
+      <div class="eyebrow">Why Tampa Bay Chooses Matt's</div>
+      <h2 style="font-size:38px;margin:12px 0 26px;">Local, honest, and built to fix it in one visit.</h2>
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-num">01</div>
+          <div>
+            <h4>Family-Owned &amp; Local</h4>
+            <p>We're your friends and neighbors in Western Florida — not a call center. Every job gets treated like it's our own home.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">02</div>
+          <div>
+            <h4>24/7 &amp; Same-Day Availability</h4>
+            <p>Plumbing emergencies don't wait for business hours, so neither do we. Call anytime, day or night.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">03</div>
+          <div>
+            <h4>1,500+ Tools &amp; Parts Stocked</h4>
+            <p>Every truck rolls out fully stocked, so most jobs get solved on the first visit — no waiting on parts.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">04</div>
+          <div>
+            <h4>Satisfaction Guaranteed</h4>
+            <p>Quality-focused work, done right, with a guarantee behind it. That's the standard since 2015.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-art">
+      <svg viewBox="0 0 380 340" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="20" width="340" height="300" rx="16" fill="none" stroke="#1C4F6B" stroke-width="1.2" stroke-dasharray="3 6" opacity="0.4"/>
+        <circle cx="190" cy="170" r="94" fill="none" stroke="#D9711F" stroke-width="1.6"/>
+        <circle cx="190" cy="170" r="60" fill="#0E2A3F"/>
+        <path d="M190 132c14 16 26 30 26 44a26 26 0 0 1-52 0c0-14 12-28 26-44Z" fill="#D9711F"/>
+        <g stroke="#1C4F6B" stroke-width="1.4" opacity="0.55">
+          <line x1="190" y1="40" x2="190" y2="76"/>
+          <line x1="190" y1="264" x2="190" y2="300"/>
+          <line x1="70" y1="170" x2="106" y2="170"/>
+          <line x1="274" y1="170" x2="310" y2="170"/>
+        </g>
+        <circle cx="190" cy="40" r="5" fill="#D9711F"/>
+        <circle cx="190" cy="300" r="5" fill="#D9711F"/>
+        <circle cx="70" cy="170" r="5" fill="#D9711F"/>
+        <circle cx="310" cy="170" r="5" fill="#D9711F"/>
+        <text x="190" y="42" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#4B5B63" transform="translate(0,-14)">EST. 2015</text>
+        <text x="190" y="300" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#4B5B63" transform="translate(0,24)">GUARANTEED</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EMERGENCY BANNER ================= -->
+<div class="emergency-banner" id="emergency">
+  <div class="wrap eb-inner">
+    <div>
+      <div class="eyebrow">Right Now, Not Next Week</div>
+      <h2>Burst pipe? Water everywhere?<br>We answer 24/7.</h2>
+      <p>Same-day emergency service across the Greater Tampa Bay Area. One call gets a fully-stocked truck moving toward you.</p>
+    </div>
+    <a href="tel:8132697370" class="btn btn-copper" style="font-size:18px;padding:18px 32px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      813-269-7370
+    </a>
+  </div>
+</div>
+
+<!-- ================= SERVICE AREA ================= -->
+<section class="area" id="areas">
+  <div class="wrap area-grid">
+    <div>
+      <div class="eyebrow">Where We Work</div>
+      <h2 style="font-size:36px;margin:12px 0 16px;">Tampa, FL &amp; the Greater Tampa Bay Area.</h2>
+      <p style="color:var(--ink-soft);font-size:15.5px;line-height:1.6;">Our team lives and works right here in Western Florida, so we know the pipes, the soil, and the storms as well as we know our neighbors. Proudly serving:</p>
+      <div class="county-chips">
+        <span>Hillsborough</span><span>Pinellas</span><span>Pasco</span><span>Polk</span>
+        <span>Manatee</span><span>Sarasota</span><span>Hernando</span><span>Citrus</span>
+        <span>Sumter</span><span>Hardee</span><span>DeSoto</span>
+      </div>
+      <a href="tel:8132697370" class="btn btn-navy-outline" style="margin-top:28px;">Check Your Area — Call Us</a>
+    </div>
+    <div class="map-art">
+      <svg viewBox="0 0 360 400" xmlns="http://www.w3.org/2000/svg">
+        <path d="M120 20 C 90 60, 70 110, 80 160 C 60 190, 55 230, 70 260 C 60 300, 90 340, 130 360 C 160 380, 190 370, 200 340 C 230 330, 250 300, 240 270 C 270 250, 280 210, 260 180 C 275 150, 265 110, 235 95 C 225 70, 195 50, 165 55 C 150 35, 130 20, 120 20 Z"
+              fill="#F6F2EA" stroke="#1C4F6B" stroke-width="1.4"/>
+        <circle cx="150" cy="185" r="7" fill="#D9711F"/>
+        <circle cx="150" cy="185" r="14" fill="none" stroke="#D9711F" stroke-width="1.4" opacity="0.5"/>
+        <circle cx="150" cy="185" r="22" fill="none" stroke="#D9711F" stroke-width="1" opacity="0.3"/>
+        <text x="162" y="182" font-family="JetBrains Mono, monospace" font-size="11" fill="#0E2A3F" font-weight="700">TAMPA</text>
+        <circle cx="205" cy="220" r="4" fill="#1C4F6B"/>
+        <text x="212" y="224" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#4B5B63">ST. PETE</text>
+        <circle cx="175" cy="270" r="4" fill="#1C4F6B"/>
+        <text x="182" y="274" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#4B5B63">BRADENTON</text>
+        <circle cx="130" cy="120" r="4" fill="#1C4F6B"/>
+        <text x="90" y="105" font-family="JetBrains Mono, monospace" font-size="8.5" fill="#4B5B63">WESLEY CHAPEL</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="testimonials" id="reviews">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="eyebrow" style="justify-content:center;">Trusted Quality &amp; Service</div>
+      <h2>What Tampa Bay says after we leave.</h2>
+      <p>A few examples of the feedback we work hard to earn on every job — swap in your live Google reviews here.</p>
+    </div>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">Showed up same-day for a water heater emergency, explained everything clearly, and had it fixed before dinner. Exactly the kind of local company you hope for.</p>
+        <div class="who">— TAMPA, FL HOMEOWNER</div>
+      </div>
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">Found a slab leak another company missed. Professional, honest about pricing, and the truck had every part needed to finish in one visit.</p>
+        <div class="who">— ST. PETERSBURG, FL HOMEOWNER</div>
+      </div>
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">Called at 11pm for a burst pipe and someone actually answered. That kind of reliability is why we keep them on speed dial.</p>
+        <div class="who">— WESLEY CHAPEL, FL HOMEOWNER</div>
+      </div>
+    </div>
+
+    <div class="badges-row">
+      <div class="badge-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Google Guaranteed</div>
+      <div class="badge-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 15 8.5-8.5M3 21l6-1 11-11-5-5L4 15l-1 6Z"/></svg>NATE Certified</div>
+      <div class="badge-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 4 9 9 10 5-1 9-5 9-10V6l-9-4Z"/></svg>BBB Accredited</div>
+      <div class="badge-pill"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>Family-Owned Since 2015</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="contact">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;color:rgba(255,255,255,.85);">Choose Quality. Call Today.</div>
+    <h2>Ready when you are — day or night.</h2>
+    <p>Same-day service, satisfaction guaranteed, and a fully-stocked truck on the way.</p>
+    <a href="tel:8132697370" class="big-phone">813-269-7370</a>
+    <div class="hours">OPEN 24 HOURS A DAY · 7 DAYS A WEEK</div>
+    <div class="contact-ctas">
+      <a href="tel:8132697370" class="btn btn-copper">Call Now</a>
+      <a href="tel:8132697370" class="btn btn-outline">Request Service Online</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="23" fill="#0E2A3F" stroke="#D9711F" stroke-width="1.6"/>
+            <path d="M15 27c0-5 4-8 9-13 5 5 9 8 9 13a9 9 0 0 1-18 0Z" fill="#D9711F"/>
+          </svg>
+          <div class="logo-text">Matt's Plumbing Services</div>
+        </div>
+        <p>Quality, professional residential &amp; commercial plumbing serving Tampa, FL &amp; the surrounding areas since 2015.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <a href="#services">Drain Cleaning</a>
+        <a href="#services">Water Heaters</a>
+        <a href="#services">Sewer Lines</a>
+        <a href="#services">Slab Leak Repair</a>
+        <a href="#services">Commercial Plumbing</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="#why">Why Choose Us</a>
+        <a href="#areas">Service Area</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#emergency">Emergency Service</a>
+      </div>
+      <div>
+        <h5>Get In Touch</h5>
+        <a href="tel:8132697370">813-269-7370</a>
+        <a href="#" style="pointer-events:none;">13775 N Nebraska Ave<br>Tampa, FL 33613</a>
+        <a href="#" style="pointer-events:none;">Open 24/7</a>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <div>© 2026 Matt's Plumbing Services. All rights reserved.</div>
+      <div><a href="#">Terms &amp; Conditions</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- sticky mobile call bar -->
+<div class="sticky-call">
+  <a href="tel:8132697370">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    Call Now — 813-269-7370
+  </a>
+</div>
+
+</body>
+</html>
